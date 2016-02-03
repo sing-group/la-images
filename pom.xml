@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.uvigo.ei.sing</groupId>
+	<artifactId>la-images</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+
+	<name>LA-iMageS</name>
+	<inceptionYear>2016</inceptionYear>
+	<url>http://sing.ei.uvigo.es/LA-iMageS</url>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>la-images-api</module>
+		<module>la-images-core</module>
+		<module>la-images-gui</module>
+		<module>la-images-aibench</module>
+	</modules>
+
+	<licenses>
+		<license>
+			<name>GNU GENERAL PUBLIC LICENSE, Version 3</name>
+			<url>http://www.gnu.org/licenses/gpl.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Miguel Reboiro-Jato</name>
+			<organization>SING Group - Universidade de Vigo</organization>
+			<organizationUrl>http://sing.ei.uvigo.es/</organizationUrl>
+			<email>mrjato@uvigo.es</email>
+		</developer>
+		<developer>
+			<name>Hugo López-Fernández</name>
+			<organization>SING Group - Universidade de Vigo</organization>
+			<organizationUrl>http://sing.ei.uvigo.es/</organizationUrl>
+			<email>hlfernandez@uvigo.es</email>
+		</developer>
+		<developer>
+			<name>Daniel Glez-Peña</name>
+			<organization>SING Group - Universidade de Vigo</organization>
+			<organizationUrl>http://sing.ei.uvigo.es/</organizationUrl>
+			<email>dgpena@uvigo.es</email>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>Marco Aurélio Zezzi Arruda</name>
+			<organization>Grupo de Espectrometria, Preparo de Amostras e Mecanização - Universidade Estadual de Campinas</organization>
+			<organizationUrl>http://gepam.iqm.unicamp.br/</organizationUrl>
+			<email>zezzi@iqm.unicamp.br</email>
+			<roles>
+				<role>Principal Investigator</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Gustavo de Souza Pessôa</name>
+			<organization>Grupo de Espectrometria, Preparo de Amostras e Mecanização - Universidade Estadual de Campinas</organization>
+			<organizationUrl>http://evolution.ibmc.up.pt/</organizationUrl>
+			<email>gpessoa@iqm.unicamp.br</email>
+			<roles>
+				<role>Researcher</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>José Luis Capelo Martínez</name>
+			<organization>Bioscope Group - Universidade Nova de Lisboa</organization>
+			<organizationUrl>http://www.bioscopegroup.org/</organizationUrl>
+			<email>jlcm@fct.unl.pt</email>
+			<roles>
+				<role>Researcher</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Florentino Fdez-Riverola</name>
+			<organization>SING Group - Universidade de Vigo</organization>
+			<organizationUrl>http://sing.ei.uvigo.es/</organizationUrl>
+			<email>riverola@uvigo.es</email>
+			<roles>
+				<role>Researcher</role>
+			</roles>
+		</contributor>
+	</contributors>
+
+	<properties>
+		<!-- General -->
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- License configuration -->
+		<license.licenseName>gpl_v3</license.licenseName>
+		<license.copyrightOwners>Marco Aurélio Zezzi Arruda, Gustavo de Souza
+			Pessôa, José Luis Capelo Martínez, Florentino Fdez-Riverola, Miguel
+			Reboiro-Jato, Hugo López-Fdez, and Daniel Glez-Peña</license.copyrightOwners>
+		<license.organizationName>GEPAM Grupo (Universidade Estadual de
+			Campinas), Bioscope Group (Universidade Nova de Lisboa) and SING
+			Group (Universidade de Vigo)</license.organizationName>
+		<license.addJavaLicenseAfterPackage>false</license.addJavaLicenseAfterPackage>
+
+		<!-- Plugins Dependencies -->
+		<license-maven-plugin.version>1.8</license-maven-plugin.version>
+		<maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+		<maven-dependency-plugin.version>2.1</maven-dependency-plugin.version>
+		<maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
+
+		<!-- General Dependencies -->
+		<jzy3d.version>0.9.2-SNAPSHOT</jzy3d.version>
+		<aibench.version>2.5.5</aibench.version>
+		<swingx-all.version>1.6.5-1</swingx-all.version>
+		<commons-math3.version>3.6</commons-math3.version>
+
+		<!-- Testing Dependencies -->
+		<junit.version>4.12</junit.version>
+		<easymock.version>3.3.1</easymock.version>
+		
+		<!-- 
+			Installer generation requisites:
+		  		* mingw-w64
+				* wine
+				* Windows 32 and 64 JRE version 8 or later
+				* NSIS uncompressed in some folder (will use makensis.exe)
+		 -->
+		<jre.simplepath>jre1.8.0_66</jre.simplepath>
+		<jre.path>z:\opt\java-installer-resources-w64\${jre.simplepath}</jre.path>
+		<nsis.path>/opt/java-installer-resources-w64/NSIS</nsis.path>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>sing-repository</id>
+			<name>SING repository</name>
+			<url>http://sing.ei.uvigo.es/maven2</url>
+		</repository>
+		<repository>
+			<id>jzy3d-snapshots</id>
+			<name>Jzy3d Snapshots</name>
+			<url>http://maven.jzy3d.org/snapshots</url>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Modules -->
+			<dependency>
+				<groupId>es.uvigo.ei.sing</groupId>
+				<artifactId>la-images-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.uvigo.ei.sing</groupId>
+				<artifactId>la-images-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.uvigo.ei.sing</groupId>
+				<artifactId>la-images-gui</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.uvigo.ei.sing</groupId>
+				<artifactId>la-images-aibench</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- General -->
+			<dependency>
+				<groupId>org.jzy3d</groupId>
+				<artifactId>jzy3d-api</artifactId>
+				<version>${jzy3d.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.swinglabs.swingx</groupId>
+				<artifactId>swingx-all</artifactId>
+				<version>${swingx-all.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-math3</artifactId>
+				<version>${commons-math3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.uvigo.ei.sing</groupId>
+				<artifactId>aibench-aibench</artifactId>
+				<version>${aibench.version}</version>
+				<scope>compile</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>es.uvigo.ei.sing</groupId>
+				<artifactId>aibench-shell</artifactId>
+				<version>${aibench.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>es.uvigo.ei.sing</groupId>
+				<artifactId>aibench-core</artifactId>
+				<version>${aibench.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>*</groupId>
+						<artifactId>*</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>es.uvigo.ei.sing</groupId>
+				<artifactId>aibench-workbench</artifactId>
+				<version>${aibench.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>*</groupId>
+						<artifactId>*</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>es.uvigo.ei.sing</groupId>
+				<artifactId>aibench-pluginmanager</artifactId>
+				<version>${aibench.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>*</groupId>
+						<artifactId>*</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- Testing -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.easymock</groupId>
+				<artifactId>easymock</artifactId>
+				<version>${easymock.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>${license-maven-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven-resources-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>${maven-dependency-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${maven-antrun-plugin.version}</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>

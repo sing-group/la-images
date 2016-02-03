@@ -1,0 +1,8 @@
+# Eclipse
+**/.settings
+**/.project
+**/.classpath
+
+# Maven
+la-images-*/target
+**/pom.xml.versionsBackup
