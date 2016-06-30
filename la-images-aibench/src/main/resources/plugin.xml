@@ -22,11 +22,11 @@
   #L%
   -->
 <plugin start="true">
-	<uid>icp-ms-aibench</uid>
-	<name>icp-ms-aibench</name>
-	<version>1.0-SNAPSHOT</version>
+	<uid>la-images-aibench</uid>
+	<name>LA-iMageS</name>
+	<version>0.1.0-SNAPSHOT</version>
 	
-	<lifecycleclass>es.uvigo.ei.sing.icpms.gui.aibench.Lifecycle</lifecycleclass>
+	<lifecycleclass>es.uvigo.ei.sing.laimages.aibench.Lifecycle</lifecycleclass>
 
 	<dependencies>
 		<dependency uid="aibench.workbench"/>
@@ -35,30 +35,30 @@
 
 	<extensions>
 		<!-- Operations -->
-		<extension uid="aibench.core" name="aibench.core.operation-definition" class="es.uvigo.ei.sing.icpms.gui.aibench.operations.LoadDatasetOperation">
-			<operation-description name="Analyze Data" path="1@File/" uid="icpms.loaddatasetoperation" shortcut="1" help="laimages.loaddata.analyze"/>
+		<extension uid="aibench.core" name="aibench.core.operation-definition" class="es.uvigo.ei.sing.laimages.aibench.operations.LoadDatasetOperation">
+			<operation-description name="Analyze Data" path="1@File/" uid="laimages.loaddatasetoperation" shortcut="1" help="laimages.loaddata.analyze"/>
 		</extension>
-		<extension uid="aibench.core" name="aibench.core.operation-definition" class="es.uvigo.ei.sing.icpms.gui.aibench.operations.LoadAnalysisOperation">
-			<operation-description name="Load Analysis" path="2@File/" uid="icpms.loadanalysisoperation" shortcut="2" help="laimages.loaddata.loadanalysis"/>
+		<extension uid="aibench.core" name="aibench.core.operation-definition" class="es.uvigo.ei.sing.laimages.aibench.operations.LoadAnalysisOperation">
+			<operation-description name="Load Analysis" path="2@File/" uid="laimages.loadanalysisoperation" shortcut="2" help="laimages.loaddata.loadanalysis"/>
 		</extension>
 
 		<!-- Views -->
 		<extension uid="aibench.workbench" name="aibench.workbench.view" >
-			<view name="Analysis viewer" datatype="es.uvigo.ei.sing.icpms.gui.aibench.datatypes.AiBenchLaImagesAnalysis" class="es.uvigo.ei.sing.icpms.core.gui.views.LaImagesAnalysisViewer"/>
+			<view name="Analysis viewer" datatype="es.uvigo.ei.sing.laimages.aibench.datatypes.AiBenchLaImagesAnalysis" class="es.uvigo.ei.sing.laimages.gui.views.LaImagesAnalysisViewer"/>
 		</extension>
 		
 		<!-- Icons -->
 		<extension uid="aibench.workbench" name="aibench.workbench.view" >
-		 	<icon-operation operation="icpms.loaddatasetoperation" icon="icons/loaddataset.png"/>
-			<big-icon-operation operation="icpms.loaddatasetoperation" icon="icons/loaddataset.png"/>
-		 	<icon-operation operation="icpms.loadanalysisoperation" icon="icons/loadanalysis.png"/>
-			<big-icon-operation operation="icpms.loadanalysisoperation" icon="icons/loadanalysis.png"/>
-			<icon-datatype datatype="es.uvigo.ei.sing.icpms.gui.aibench.datatypes.AiBenchLaImagesAnalysis" icon="icons/dataset.png"/>
+		 	<icon-operation operation="laimages.loaddatasetoperation" icon="icons/loaddataset.png"/>
+			<big-icon-operation operation="laimages.loaddatasetoperation" icon="icons/loaddataset.png"/>
+		 	<icon-operation operation="laimages.loadanalysisoperation" icon="icons/loadanalysis.png"/>
+			<big-icon-operation operation="laimages.loadanalysisoperation" icon="icons/loadanalysis.png"/>
+			<icon-datatype datatype="es.uvigo.ei.sing.laimages.aibench.datatypes.AiBenchLaImagesAnalysis" icon="icons/dataset.png"/>
 		</extension>
 		
 		<!-- Dialogs -->
 		<extension uid="aibench.workbench" name="aibench.workbench.view" >
-		    <gui-operation  operation="icpms.loaddatasetoperation" class="es.uvigo.ei.sing.icpms.gui.aibench.dialogs.LoadDatasetOperationDialog"/>
+		    <gui-operation  operation="laimages.loaddatasetoperation" class="es.uvigo.ei.sing.laimages.aibench.dialogs.LoadDatasetOperationDialog"/>
 		</extension>
 	</extensions>
 </plugin>
