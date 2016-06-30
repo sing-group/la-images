@@ -12,7 +12,6 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>la-images-api</module>
 		<module>la-images-core</module>
 		<module>la-images-gui</module>
 		<module>la-images-aibench</module>
@@ -106,9 +105,12 @@
 		<maven-resources-plugin.version>2.7</maven-resources-plugin.version>
 		<maven-dependency-plugin.version>2.1</maven-dependency-plugin.version>
 		<maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
+		<maven-assembly-plugin.version>2.2</maven-assembly-plugin.version>
+		<maven-jar-plugin.version>2.6</maven-jar-plugin.version>
+		<download-maven-plugin.version>1.2.1</download-maven-plugin.version>
 
 		<!-- General Dependencies -->
-		<jzy3d.version>0.9.2-SNAPSHOT</jzy3d.version>
+		<jzy3d.version>1.0.0-SNAPSHOT</jzy3d.version>
 		<aibench.version>2.5.5</aibench.version>
 		<swingx-all.version>1.6.5-1</swingx-all.version>
 		<commons-math3.version>3.6</commons-math3.version>
@@ -116,17 +118,23 @@
 		<!-- Testing Dependencies -->
 		<junit.version>4.12</junit.version>
 		<easymock.version>3.3.1</easymock.version>
+		<java-hamcrest.version>2.0.0.0</java-hamcrest.version>
+		<commons-io.version>2.5</commons-io.version>
 		
-		<!-- 
-			Installer generation requisites:
-		  		* mingw-w64
-				* wine
-				* Windows 32 and 64 JRE version 8 or later
-				* NSIS uncompressed in some folder (will use makensis.exe)
-		 -->
-		<jre.simplepath>jre1.8.0_66</jre.simplepath>
-		<jre.path>z:\opt\java-installer-resources-w64\${jre.simplepath}</jre.path>
-		<nsis.path>/opt/java-installer-resources-w64/NSIS</nsis.path>
+		<!-- AIBench configuration -->
+		
+		<aibench.lib.artifactIds>javatar,aibench-aibench,jhall,log4j</aibench.lib.artifactIds>
+		<aibench.plugins.artifactIds>aibench-core,aibench-workbench</aibench.plugins.artifactIds>
+		
+		<!-- Java resources for assemblies -->
+		<jir.windows.64b>${project.build.directory}/java-installer-resources/windows/64b/jre1.8.0_74</jir.windows.64b>
+		<jir.windows.32b>${project.build.directory}/java-installer-resources/windows/32b/jre1.8.0_74</jir.windows.32b>
+		<jir.linux.64b>${project.build.directory}/java-installer-resources/linux/64b/jre1.8.0_74</jir.linux.64b>
+		<jir.linux.32b>${project.build.directory}/java-installer-resources/linux/32b/jre1.8.0_74</jir.linux.32b>
+		
+		<should.skip.installer>true</should.skip.installer>
+		<should.skip.distributable>true</should.skip.distributable>
+		<should.skip.download>true</should.skip.download>
 	</properties>
 
 	<repositories>
@@ -145,11 +153,6 @@
 	<dependencyManagement>
 		<dependencies>
 			<!-- Modules -->
-			<dependency>
-				<groupId>es.uvigo.ei.sing</groupId>
-				<artifactId>la-images-api</artifactId>
-				<version>${project.version}</version>
-			</dependency>
 			<dependency>
 				<groupId>es.uvigo.ei.sing</groupId>
 				<artifactId>la-images-core</artifactId>
@@ -187,12 +190,6 @@
 				<artifactId>aibench-aibench</artifactId>
 				<version>${aibench.version}</version>
 				<scope>compile</scope>
-				<exclusions>
-					<exclusion>
-						<groupId>log4j</groupId>
-						<artifactId>log4j</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>es.uvigo.ei.sing</groupId>
@@ -221,17 +218,6 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			<dependency>
-				<groupId>es.uvigo.ei.sing</groupId>
-				<artifactId>aibench-pluginmanager</artifactId>
-				<version>${aibench.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>*</groupId>
-						<artifactId>*</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
 
 			<!-- Testing -->
 			<dependency>
@@ -243,6 +229,16 @@
 				<groupId>org.easymock</groupId>
 				<artifactId>easymock</artifactId>
 				<version>${easymock.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.hamcrest</groupId>
+			    <artifactId>java-hamcrest</artifactId>
+			    <version>${java-hamcrest.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>${commons-io.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -266,8 +262,46 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven-assembly-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>${maven-antrun-plugin.version}</version>
+			</plugin>
+			<plugin>
+		       <groupId>org.apache.maven.plugins</groupId>
+		       <artifactId>maven-jar-plugin</artifactId>
+		       <version>${maven-jar-plugin.version}</version>
+	       </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>${license-maven-plugin.version}</version>
+				<configuration>
+					<excludes>
+						<exclude>*.lai</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.googlecode.maven-download-plugin</groupId>
+				<artifactId>download-maven-plugin</artifactId>
+				<version>${download-maven-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<!-- Allows using test classes in other projects -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

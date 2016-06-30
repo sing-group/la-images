@@ -1,0 +1,45 @@
+<!--
+  #%L
+  LA-iMageS
+  %%
+  Copyright (C) 2016 Marco Aurélio Zezzi Arruda, Gustavo de Souza
+  			Pessôa, José Luis Capelo Martínez, Florentino Fdez-Riverola, Miguel
+  			Reboiro-Jato, Hugo López-Fdez, and Daniel Glez-Peña
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/gpl-3.0.html>.
+  #L%
+  -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Analyze data</title>
+</head>
+<body>
+	<h1>Analyze data</h1>
+	<p>The analysis execution is started by clicking on the <img src="Images/button-analyze-data.png"/> button of the toolbar, which will show you the <i>Analyze Data</i> dialog. As you can see in the following figure, this dialog requires you to introduce the ICP-MS acquisition parameters (refer <a href="datasetformats-xl.html">here</a> for a deepest explanation of these parameters):</p>
+	<ul>
+		<li><b>Data directory</b>: the directory where the dataset to be analyzed is stored.</li>
+		<li><b>Standard</b>: the standard element in the dataset.</li>
+		<li><b>Ablation speed</b>: speed set by the user in the laser operational mode as <b><i>continuous firing</i></b>.</li>
+		<li><b>Acquisition time</b>: refers to the time needed by the acquisition of one point for all elements monitored by the ICP-MS.</li>
+		<li><b>Space interval</b>: is the distance among the center of two lines.</li>
+	</ul>	
+	<div align="center">
+  		<p><img src="Images/analyze-data-dialog.png" border="0"/></p>
+  		<p><strong><i>Analyze data</i> dialog</strong> </p>
+	</div>
+	<p>If the <i>parameters.conf</i> file is present in the data directory, then the data acquisition parameters are automatically loaded. You will notice that loaded parameters are highlighted with a green background.</p>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!--
+  #%L
+  LA-iMageS
+  %%
+  Copyright (C) 2016 Marco Aurélio Zezzi Arruda, Gustavo de Souza
+  			Pessôa, José Luis Capelo Martínez, Florentino Fdez-Riverola, Miguel
+  			Reboiro-Jato, Hugo López-Fdez, and Daniel Glez-Peña
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/gpl-3.0.html>.
+  #L%
+  -->
+
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN"
+                     "http://java.sun.com/products/javahelp/map_2_0.dtd">
+
+<map version="2.0">
+	<mapID target="top" url="HTML/index.html" />
+	<mapID target="laimages.mainGUI" url="HTML/mainGUI.html" />
+	<mapID target="laimages.loaddata" url="HTML/loaddata.html" />
+	<mapID target="laimages.loaddata.datasetformats" url="HTML/datasetformats.html" />
+	<mapID target="laimages.loaddata.datasetformats.xl" url="HTML/datasetformats-xl.html" />
+	<mapID target="laimages.loaddata.analyze" url="HTML/analyze.html" />
+	<mapID target="laimages.loaddata.loadanalysis" url="HTML/loadanalysis.html" />
+	<mapID target="laimages.exploredata" url="HTML/exploredata.html" />
+	<mapID target="laimages.exploredata.analysisviewer" url="HTML/analysisviewer.html" />
+	<mapID target="laimages.exploredata.rightsidebar" url="HTML/rightsidebar.html" />
+	<mapID target="laimages.exploredata.filemenu" url="HTML/filemenu.html" />
+	<mapID target="laimages.exploredata.graphicsettingsmenu" url="HTML/graphicsettingsmenu.html" />
+	<mapID target="laimages.exploredata.exportmenu" url="HTML/exportmenu.html" />
+	<mapID target="laimages.exploredata.exportmenu.csv" url="HTML/exportmenu-csv.html" />
+	<mapID target="laimages.exploredata.exportmenu.image" url="HTML/exportmenu-image.html" />
+	<mapID target="laimages.about" url="HTML/about.html" />
+</map>

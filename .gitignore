@@ -4,5 +4,6 @@
 **/.classpath
 
 # Maven
+target
 la-images-*/target
 **/pom.xml.versionsBackup

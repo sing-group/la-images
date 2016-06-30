@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!--
+  #%L
+  LA-iMageS
+  %%
+  Copyright (C) 2016 Marco Aurélio Zezzi Arruda, Gustavo de Souza
+  			Pessôa, José Luis Capelo Martínez, Florentino Fdez-Riverola, Miguel
+  			Reboiro-Jato, Hugo López-Fdez, and Daniel Glez-Peña
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/gpl-3.0.html>.
+  #L%
+  -->
+
+<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 2.0//EN"
+		"http://java.sun.com/products/javahelp/toc_2_0.dtd">
+
+<toc version="1.0">
+	<tocitem text="LA-iMageS Help">
+		<tocitem 
+			text="Introduction" 
+			target="top"
+		/>
+		<tocitem 
+			text="Main user interface" 
+			target="laimages.mainGUI"
+		/>
+		<tocitem 
+			text="Loading data"
+			target="laimages.loaddata"
+		>
+			<tocitem 
+				text="Dataset formats" 
+				target="laimages.loaddata.datasetformats"
+			>
+				<tocitem
+					text="XL format"
+					target="laimages.loaddata.datasetformats.xl"
+				/>
+			</tocitem>
+			
+			<tocitem 
+				text="Analyze data" 
+				target="laimages.loaddata.analyze"
+			/>
+			
+			<tocitem 
+				text="Load analysis" 
+				target="laimages.loaddata.loadanalysis"
+			/>
+		</tocitem>
+			
+		<tocitem 
+			text="Exploring data" 
+			target="laimages.exploredata"
+		>
+			<tocitem 
+				text="The element data viewer" 
+				target="laimages.exploredata.analysisviewer"
+			/>
+			<tocitem 
+				text="The right sidebar" 
+				target="laimages.exploredata.rightsidebar"
+			/>
+			<tocitem 
+				text="The File menu" 
+				target="laimages.exploredata.filemenu"
+			/>
+			<tocitem 
+				text="The Graphic Settings menu" 
+				target="laimages.exploredata.graphicsettingsmenu"
+			/>
+			<tocitem 
+				text="The Export menu" 
+				target="laimages.exploredata.exportmenu"
+			>
+				<tocitem 
+					text="Export as CSV" 
+					target="laimages.exploredata.exportmenu.csv"
+				/>
+				<tocitem 
+					text="Export as image" 
+					target="laimages.exploredata.exportmenu.image"
+				/>
+			</tocitem>
+		</tocitem>
+			
+		<tocitem 
+			text="About" 
+			target="laimages.about"
+		/>
+	</tocitem>
+</toc>

@@ -1,0 +1,61 @@
+<!--
+  #%L
+  LA-iMageS
+  %%
+  Copyright (C) 2016 Marco Aurélio Zezzi Arruda, Gustavo de Souza
+  			Pessôa, José Luis Capelo Martínez, Florentino Fdez-Riverola, Miguel
+  			Reboiro-Jato, Hugo López-Fdez, and Daniel Glez-Peña
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/gpl-3.0.html>.
+  #L%
+  -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Export as CSV</title>
+</head>
+<body>
+	<h1>Export as CSV</h1>
+	<p>The CSV (Comma Separated Values) is a general format to store tabular results in plain text files. The main advantage of this format is that many data analysis and manipulation software applications are capable to import data stored in this format.</p>
+	<p>The export menu offers you two options to export your data as CSV: Export As CSV, to export the data of the element that is being currently displayed, and Export All as CSV, to export the data of each element in the dataset into CSV files (one CSV per element).</p>
+	<p>By clicking the <i>Export As CSV/All as CSV</i> options, a new dialog will appear allowing you to select:</p>
+	<ul>
+		<li><b>File</b>:
+			<ul>
+				<li><i>Export As CSV</i>: the file where the data will be stored. By default, this file is <i>element.csv</i> in your home folder.</li>
+				<li><i>Export All as CSV</i>: the directory where the data will be stored. By default, this directory is your home folder.</li>
+			<ul>
+		</li>
+		<li><b>Format</b>: the CSV format to export the quantification table. <i>La-iMageS</i> includes two preconfigured formats for Excel and Open/LibreOffice applications. In case you need a specific CSV format suitable for other applications, you can select the Custom option, which allows you to configure the format as will be explained later</li>
+		<li><b>Keep error codes</b>: if this option is selected, then the error codes will be written in the CSV file.</li>
+	</ul>
+	<div align="center">
+		<p><img src="Images/export-csv-dialog-basic.png" border="0"/></p>
+		<p><strong>Export As CSV dialog</strong></p>
+	</div>	
+	<p>As commented above, you can customize the CSV format by selecting the <i>Custom</i> format option. When selecting this option, a custom format panel will be shown in the dialog, as shown in 5. The options included in this panel will allow you to specify the following export parameters:</p>
+	<ul>
+		<li><b>Quote headers</b>: if this option is selected, then headers will be quoted in the resulting CSV file.</li>
+		<li><b>Column separator</b>: the separator character/s between columns.</li>
+		<li><b>Decimal separator</b>: the character to use as decimal separator. Note that the decimal separator should be different from the column separator; otherwise, it may result in an unreadable CSV file.</li>
+		<li><b>Line break</b>: the type of line break depending in the target operating system.</li>
+
+	</ul>	
+	<div align="center">
+  		<p><img src="Images/export-csv-dialog-advanced.png" border="0"/></p>
+  		<p><strong>Export As CSV dialog showing the format customization</strong></p>
+	</div>	
+</body>
+</html>

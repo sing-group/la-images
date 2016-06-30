@@ -5,7 +5,6 @@ Laser ablation and inductively coupled plasma mass spectrometry focusing on bioi
 Modules
 -------
 This project is comprised of the following modules:
-* api: Contains the main interfaces.
 * core: Contains the default implementation API.
 * gui: Contains several GUI components.
 * aibench: Contains a GUI application based on AIBench framework ([AIBench](http://www.aibench.org/)).
