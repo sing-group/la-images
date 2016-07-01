@@ -1,6 +1,6 @@
 LA-iMageS
 =========
-Laser ablation and inductively coupled plasma mass spectrometry focusing on bioimaging from elemental distribution.
+Laser ablation and inductively coupled plasma mass spectrometry focusing on bioimaging from elemental distribution. Please, visit the [official web page ](http://sing.ei.uvigo.es/la-images) of the project for downloads and support.
 
 Modules
 -------
