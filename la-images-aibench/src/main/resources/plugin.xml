@@ -24,7 +24,7 @@
 <plugin start="true">
 	<uid>la-images-aibench</uid>
 	<name>LA-iMageS</name>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	
 	<lifecycleclass>es.uvigo.ei.sing.laimages.aibench.Lifecycle</lifecycleclass>
 
