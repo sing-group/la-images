@@ -8,7 +8,7 @@
 
 	<name>LA-iMageS</name>
 	<inceptionYear>2016</inceptionYear>
-	<url>http://sing.ei.uvigo.es/LA-iMageS</url>
+	<url>http://sing.ei.uvigo.es/la-images</url>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -246,11 +246,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>license-maven-plugin</artifactId>
-				<version>${license-maven-plugin.version}</version>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>${maven-resources-plugin.version}</version>
@@ -271,11 +266,6 @@
 				<version>${maven-antrun-plugin.version}</version>
 			</plugin>
 			<plugin>
-		       <groupId>org.apache.maven.plugins</groupId>
-		       <artifactId>maven-jar-plugin</artifactId>
-		       <version>${maven-jar-plugin.version}</version>
-	       </plugin>
-			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
 				<version>${license-maven-plugin.version}</version>
@@ -295,13 +285,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>${maven-jar-plugin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>test-jar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
