@@ -50,7 +50,7 @@ FunctionEnd
 Var StartMenuFolder
 
 !define MUI_ABORTWARNING
-;!define MUI_ICON "la-images.ico"
+!define MUI_ICON "la-images.ico"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "la-images-header.bmp"
 !define MUI_HEADERIMAGE_RIGHT
@@ -121,6 +121,9 @@ Section "Extract LA-iMageS"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LA-iMageS" "QuietUninstallString" "$\"$INSTDIR\Uninstall.exe$\" /S"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LA-iMageS" "DisplayIcon" "$\"$INSTDIR\la-images.exe$\""
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LA-iMageS" "Publisher" "SING group"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LA-iMageS" "HelpLink" "http://sing.ei.uvigo.es/la-images"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LA-iMageS" "URLInfoAbout" "http://sing.ei.uvigo.es/la-images"
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LA-iMageS" "DisplayVersion" "${version}"
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LA-iMageS" "NoModify" 1
   WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\LA-iMageS" "NoRepair" 1
   
