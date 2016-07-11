@@ -1,5 +1,7 @@
-LA-iMageS
-=========
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.57433.svg)](http://dx.doi.org/10.5281/zenodo.57433)
+
+![Logo](la-images.png) LA-iMageS
+=================================
 Laser ablation and inductively coupled plasma mass spectrometry focusing on bioimaging from elemental distribution. Please, visit the [official web page ](http://sing.ei.uvigo.es/la-images) of the project for downloads and support.
 
 Modules
