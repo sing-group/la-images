@@ -56,13 +56,16 @@ import org.jzy3d.events.ViewPointChangedEvent;
 import org.jzy3d.maths.Coord2d;
 import org.jzy3d.maths.Coord3d;
 import org.jzy3d.plot3d.primitives.Shape;
+import org.jzy3d.plot3d.primitives.axes.AxeBox;
 import org.jzy3d.plot3d.primitives.axes.layout.renderers.ITickRenderer;
 import org.jzy3d.plot3d.rendering.canvas.ICanvas;
 import org.jzy3d.plot3d.rendering.canvas.Quality;
 import org.jzy3d.plot3d.rendering.legends.colorbars.AWTColorbarLegend;
 import org.jzy3d.plot3d.rendering.view.modes.ViewPositionMode;
+import org.jzy3d.plot3d.text.renderers.TextBitmapRenderer;
 
 import com.jogamp.newt.event.MouseEvent;
+import com.jogamp.opengl.util.gl2.GLUT;
 
 import es.uvigo.ei.sing.laimages.core.entities.datasets.ElementData;
 import es.uvigo.ei.sing.laimages.core.operations.NormalizeElementData;
@@ -208,6 +211,11 @@ public class ElementDataView extends JPanel {
 			chart.getAxeLayout().setYTickRenderer(TICK_RENDERER);
 			chart.getAxeLayout().setZTickRenderer(this::formatZTick);
 			chart.getView().addViewPointChangedListener(viewPointChangedListener);
+			AxeBox a = (AxeBox) chart.getView().getAxe();
+			a.setTextRenderer(new TextBitmapRenderer() {{
+					font = GLUT.BITMAP_HELVETICA_12;
+					fontHeight = 14;
+			}});
 			setColorBarLegend();
 			_updateViewMode();
 			chart.pauseAnimator();

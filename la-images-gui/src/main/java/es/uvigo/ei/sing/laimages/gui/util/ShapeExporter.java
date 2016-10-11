@@ -176,12 +176,15 @@ public final class ShapeExporter {
 	private static void adjustFontSize(View view, int width, int height) {
 		final AxeBox axeBox = (AxeBox) view.getAxe();
 		if (width >= 1200 && height >= 1200) {
-			axeBox.setTextRenderer(new TextBitmapRenderer() {
-				{
-					font = GLUT.BITMAP_HELVETICA_18;
-					fontHeight = 18;
-				}
-			});
+			axeBox.setTextRenderer(new TextBitmapRenderer() {{
+				font = GLUT.BITMAP_HELVETICA_18;
+				fontHeight = 20;
+			}});
+		} else {
+			axeBox.setTextRenderer(new TextBitmapRenderer() {{
+				font = GLUT.BITMAP_HELVETICA_12;
+				fontHeight = 14;
+			}});
 		}
 	}
 	
