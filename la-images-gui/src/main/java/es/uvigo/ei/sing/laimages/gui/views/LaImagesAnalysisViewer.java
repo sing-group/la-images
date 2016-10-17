@@ -46,8 +46,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -163,8 +165,8 @@ public class LaImagesAnalysisViewer extends JPanel {
 	private ButtonGroup interpolationButtons;
 	private ButtonGroup colorMapButtons;
 	private ButtonGroup rangeModeButtons;
-	private float minRangeValue; 
-	private float maxRangeValue;
+	private Map<String, Float> minRangeValues = new HashMap<>(); 
+	private Map<String, Float> maxRangeValues = new HashMap<>();
 
 	private ElementDataViewConfiguration configuration = 
 		new ElementDataViewConfiguration();
@@ -315,7 +317,6 @@ public class LaImagesAnalysisViewer extends JPanel {
 			
 		});
 		
-		updateRangeFields();
 		return rangeMode;
 	}
 
@@ -346,14 +347,8 @@ public class LaImagesAnalysisViewer extends JPanel {
 					", " + range.getMax() + "]");
 			}
 		}
-		
-		public void removeRange() {
-			if(getColorMapRangeMode().equals(ColorMapRangeMode.CUSTOM)) {
-				this.setText(ColorMapRangeMode.CUSTOM.toString());
-			}
-		}
 	}	
-	
+
 	private JCheckBoxMenuItem getShowColorBarLegendComponent() {
 		showColorBarLegendCB = new JCheckBoxMenuItem("Show color bar legend",
 			ICON_COLORMAP_SHOW, configuration.isShowColorBarLegend());
@@ -656,35 +651,44 @@ public class LaImagesAnalysisViewer extends JPanel {
 
 	public float getMinRangeValue() {
 		ColorMapRangeMode rangeMode = getSelectedRangeMode();
+		ElementData selectedElement = getSelectedElementData();
 		float minRange = 0f;
+		
 		if (rangeMode.equals(ColorMapRangeMode.ELEMENT)) {
-			minRange = (float) getSelectedElementData().getMinValue();
+			minRange = (float) selectedElement.getMinValue();
 		} else if (rangeMode.equals(ColorMapRangeMode.DATASET)) {
 			minRange = (float) getDatasetRange().getMin();
 		} else {
-			minRange = minRangeValue;
+			minRange = minRangeValues.getOrDefault(
+				selectedElement.getName(), 
+				(float) selectedElement.getMinValue()
+			);
 		}
+		
 		return minRange;
 	}
 
 	public float getMaxRangeValue() {
 		ColorMapRangeMode rangeMode = getSelectedRangeMode();
+		ElementData selectedElement = getSelectedElementData();
 		float maxRange = 0f;
+		
 		if (rangeMode.equals(ColorMapRangeMode.ELEMENT)) {
-			maxRange = (float) getSelectedElementData().getMaxValue();
+			maxRange = (float) selectedElement.getMaxValue();
 		} else if (rangeMode.equals(ColorMapRangeMode.DATASET)) {
 			maxRange = (float) getDatasetRange().getMax();
 		} else {
-			maxRange = maxRangeValue;
+			maxRange = maxRangeValues.getOrDefault(
+				selectedElement.getName(), 
+				(float) selectedElement.getMaxValue()
+			);
 		}
+		
 		return maxRange;
 	}
 
 	private void colorMapRangeModeChanged() {
-		boolean customRangeMode = isCustomRangeMode();
-		if (!customRangeMode) {
-			updateRangeFields();
-		} else {
+		if (isCustomRangeMode()) {
 			readCustomRangemode();
 		}
 		applyColorMapRange();
@@ -703,8 +707,18 @@ public class LaImagesAnalysisViewer extends JPanel {
 		rangeInput.setMaxValue(getMaxRangeValue());
 		rangeInput.setVisible(true);
 		
-		this.minRangeValue = rangeInput.getMinValue();
-		this.maxRangeValue = rangeInput.getMaxValue();
+		float minRangeValue = rangeInput.getMinValue();
+		float maxRangeValue = rangeInput.getMaxValue();
+		
+		this.elementNames.forEach(n -> {
+			this.minRangeValues.putIfAbsent(n, minRangeValue);
+			this.maxRangeValues.putIfAbsent(n, maxRangeValue);
+		});
+		
+		String selectedElement = getSelectedElementData().getName();
+		
+		this.minRangeValues.put(selectedElement, minRangeValue);
+		this.maxRangeValues.put(selectedElement, maxRangeValue);
 		
 		ColorMapRangeRadioButtonMenuItem customRangeItem = getCustomRangeItem();
 		customRangeItem.setRange(getCurrentColorMapRange());
@@ -720,20 +734,6 @@ public class LaImagesAnalysisViewer extends JPanel {
 			);
 	}
 
-	private void updateRangeFields() {
-		ColorMapRangeMode selected = getSelectedRangeMode();
-		if(selected.equals(ColorMapRangeMode.ELEMENT)) {
-			this.minRangeValue = (float) (getSelectedElementData().getMinValue());
-			this.maxRangeValue = (float) (getSelectedElementData().getMaxValue());
-		} else if(selected.equals(ColorMapRangeMode.DATASET)) {
-			this.minRangeValue = (float) (getDatasetRange().getMin());
-			this.maxRangeValue = (float) (getDatasetRange().getMax());
-		}
-		if(!isCustomRangeMode()) {
-			getCustomRangeItem().removeRange();
-		}
-	}
-	
 	private Range getDatasetRange() {
 		return new Range((float) dataset.getMinValue(),
 				(float) dataset.getMaxValue());
@@ -758,6 +758,10 @@ public class LaImagesAnalysisViewer extends JPanel {
 			elementDataPanel.setColorMapRange(
 				getCurrentColorMapRange()
 			); 
+		}
+		
+		if (getSelectedRangeMode().equals(ColorMapRangeMode.CUSTOM)) {
+			getCustomRangeItem().setRange(getCurrentColorMapRange());
 		}
 	}
 	
@@ -1021,7 +1025,7 @@ public class LaImagesAnalysisViewer extends JPanel {
 			ColorMapRangeRadioButtonMenuItem i = ((ColorMapRangeRadioButtonMenuItem) a);
 			i.setSelected(i.getColorMapRangeMode().equals(DEFAULT_COLOR_MAP_RANGE_MODE));	
 		});		
-		updateRangeFields();
+
 		if(mustUpdateElementDataPanel()) {
 			elementDataPanel.removeColorMapRange();
 		}
@@ -1037,7 +1041,7 @@ public class LaImagesAnalysisViewer extends JPanel {
 
 	private final void selectedElementChanged() {
 		elementDataPanel.setElementData(getSelectedElementData());
-		updateRangeFields(); 
+		applyColorMapRange();
 	}
 	
 	private final void interpolationModeChanged() {
