@@ -8,7 +8,8 @@
 	</formats>
 	<files>
 		<file>
-			<source>${project.build.directory}/run.sh</source>
+			<source>${project.build.directory}/run-dist-32b.sh</source>
+			<destName>run.sh</destName>
 			<fileMode>777</fileMode>
 			<outputDirectory>/</outputDirectory>
 		</file>
@@ -33,6 +34,6 @@
 		<fileSet>
 			<directory>${jir.linux.32b}</directory>
 			<outputDirectory>/java</outputDirectory>
-		</fileSet>		
+		</fileSet>
 	</fileSets>
 </assembly>
