@@ -23,6 +23,7 @@
  */
 package es.uvigo.ei.sing.laimages.aibench;
 
+import java.io.File;
 import java.util.Locale;
 
 import javax.help.HelpBroker;
@@ -30,6 +31,7 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
@@ -76,33 +78,23 @@ public class Lifecycle extends org.platonos.pluginengine.PluginLifecycle {
 	 */
 	@Override
 	public void start() {
-		SwingUtilities.invokeLater(() -> {
-			configureLocale();
-			fixJMenuBug();
-			Workbench.getInstance().getMainFrame().setIconImage(
-				ICON_LAIMAGES.getImage()
-			);
+		SwingUtilities.invokeLater(this::configureLaImages);
 			
-			Workbench.getInstance().getMainFrame()
-				.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			
-			Workbench.getInstance().getToolBar().add(Box.createHorizontalGlue());
-			Workbench.getInstance().getToolBar().add(getHelpButton());
-			AboutFrame.getInstance().addToJToolbar(
-				Workbench.getInstance().getToolBar());
-			
-			Core.getInstance().getClipboard().addClipboardListener(
-				new BringViewListener(AUTO_OPEN_CLASSES));
-		});
-		
-		CommonFileChooser.getInstance().setFilechooser(Common.SINGLE_FILE_CHOOSER);
 	}
-	
+
+	private final void configureLaImages() {
+		configureLocale();
+		fixJMenuBug();
+		configureWorkbench();
+		configureCore();
+		configureFilechooser();
+	}
+
 	private static final void configureLocale() {
 		Locale.setDefault(Locale.ENGLISH);
 		JComponent.setDefaultLocale(Locale.ENGLISH);
 	}
-	
+
 	/**
 	 * Call the following two methods to avoid that JMenu's are rendered
 	 * behind ElementDataView canvas.
@@ -110,6 +102,15 @@ public class Lifecycle extends org.platonos.pluginengine.PluginLifecycle {
 	private static final void fixJMenuBug() {
 		JPopupMenu.setDefaultLightWeightPopupEnabled(false);
 		ToolTipManager.sharedInstance().setLightWeightPopupEnabled(false);
+	}
+
+	private void configureWorkbench() {
+		Workbench workbench = Workbench.getInstance();
+		workbench.getMainFrame().setIconImage(ICON_LAIMAGES.getImage());
+		workbench.getMainFrame().setExtendedState(JFrame.MAXIMIZED_BOTH);
+		workbench.getToolBar().add(Box.createHorizontalGlue());
+		workbench.getToolBar().add(getHelpButton());
+		AboutFrame.getInstance().addToJToolbar(workbench.getToolBar());
 	}
 	
 	private static JButton getHelpButton() {
@@ -126,6 +127,11 @@ public class Lifecycle extends org.platonos.pluginengine.PluginLifecycle {
 			);
 		}
 		return helpButton;
+	}
+
+	private void configureCore() {
+		Core.getInstance().getClipboard().addClipboardListener(
+			new BringViewListener(AUTO_OPEN_CLASSES));
 	}
 
 	private class BringViewListener implements ClipboardListener {
@@ -147,5 +153,13 @@ public class Lifecycle extends org.platonos.pluginengine.PluginLifecycle {
 		public void elementRemoved(ClipboardItem item) {
 
 		}
+	}
+
+	private void configureFilechooser() {
+		JFileChooser singleFc = Common.SINGLE_FILE_CHOOSER;
+		singleFc.setCurrentDirectory(
+			new File(System.getProperty("user.home"))
+		);
+		CommonFileChooser.getInstance().setFilechooser(singleFc);
 	}
 }
