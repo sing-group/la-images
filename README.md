@@ -31,3 +31,9 @@ This project is an idea and is developed by:
 * Miguel Reboiro-Jato [SING Group](http://sing.ei.uvigo.es)
 * Hugo López-Fdez [SING Group](http://sing.ei.uvigo.es)
 * Daniel Glez-Peña [SING Group](http://sing.ei.uvigo.es)
+
+Citing
+------
+If you use LA-iMageS, please, cite this publication:
+
+>H. López-Fernández; G. de S. Pessôa; M.A.Z. Arruda; J.L. Capelo-Martínez; F. Fdez-Riverola; D. Glez-Peña; M. Reboiro-Jato (2016) [LA-iMageS: a software for elemental distribution bioimaging using LA-ICP-MS data](http://dx.doi.org/10.1186/s13321-016-0178-7). Journal of Cheminformatics. Volume 8:65. ISSN: 1758-2946
