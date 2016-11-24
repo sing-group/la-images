@@ -1,4 +1,4 @@
-![Logo](la-images.png) LA-iMageS [![license](https://img.shields.io/badge/LICENSE-GPLv3-blue.svg)]() [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.166500.svg)](https://doi.org/10.5281/zenodo.166500)
+![Logo](la-images.png) LA-iMageS [![license](https://img.shields.io/badge/LICENSE-GPLv3-blue.svg)]()
 =================================
 Laser ablation and inductively coupled plasma mass spectrometry focusing on bioimaging from elemental distribution. Please, visit the [official web page ](http://www.la-images.net) of the project for downloads and support.
 
