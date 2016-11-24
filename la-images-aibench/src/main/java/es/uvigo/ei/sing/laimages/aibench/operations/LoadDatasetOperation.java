@@ -94,7 +94,8 @@ public class LoadDatasetOperation {
 		direction = INPUT,
 		name = PORT_NAME_DATA_DIRECTORY,
 		description = "Directory where the dataset is stored",
-		order = 1
+		order = 1,
+		extras="selectionMode=directories"
 	)
 	public void setDataDirectory(File directory) {
 		this.directory = directory;

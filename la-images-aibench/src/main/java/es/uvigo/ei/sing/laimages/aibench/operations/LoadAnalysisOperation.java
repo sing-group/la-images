@@ -57,7 +57,8 @@ public class LoadAnalysisOperation {
 		name = "Analysis file",
 		description = "Analysis (*lai) file",
 		order = 1,
-		extras = "filters=.*\\.lai|: LA-iMageS analysis file"
+		extras = "selectionMode=files,"
+			+ "filters=.*\\.lai|: LA-iMageS analysis file"
 	)
 	public void setDataDirectory(File analysis) {
 		this.analysis = analysis;
