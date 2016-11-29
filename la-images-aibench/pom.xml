@@ -190,8 +190,13 @@
 											<arg value="target/dist/installer-script.nsi" />
 										</exec>
 										<delete includeemptydirs="true">
-		    								<fileset dir="${project.build.directory}/dist/" excludes="setup.exe"/>
+											<fileset dir="${project.build.directory}/dist/" excludes="setup.exe"/>
 										</delete>
+										<move 
+											file="${project.build.directory}/dist/setup.exe" 
+											tofile="${project.builds.directory}/${project.name}-${project.version}-windows-64b.exe"
+										/>
+										<delete dir="${project.build.directory}/dist/"/>
 									</target>
 								</configuration>
 								<goals>
@@ -222,8 +227,13 @@
 											<arg value="target/dist32/installer-script.nsi" />
 										</exec>
 										<delete includeemptydirs="true">
-		    								<fileset dir="${project.build.directory}/dist32/" excludes="setup.exe"/>
+											<fileset dir="${project.build.directory}/dist32/" excludes="setup.exe"/>
 										</delete>
+										<move 
+											file="${project.build.directory}/dist32/setup.exe" 
+											tofile="${project.builds.directory}/${project.name}-${project.version}-windows-32b.exe"
+										/>
+										<delete dir="${project.build.directory}/dist32/"/>
 									</target>
 								</configuration>
 								<goals>
@@ -249,6 +259,7 @@
 						<configuration>
 							<skipAssembly>${should.skip.distributable}</skipAssembly>
 							<finalName>${project.name}-${project.version}</finalName>
+							<outputDirectory>${project.builds.directory}</outputDirectory>
 							<appendAssemblyId>true</appendAssemblyId>
 							<descriptors>
 								<descriptor>src/main/resources/assembly/linux.xml</descriptor>

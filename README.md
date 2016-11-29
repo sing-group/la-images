@@ -16,10 +16,10 @@ The final application can be built using the `mvn install` command. This command
 In order to create the Windows/Linux portable versions and the Windows executable installers, two profiles can be specified: `createDistributables` and `createInstallers`, respectively. Both portable versions and installers are self-contained since they contain an embedded Java Runtime Environment to run the application.
 
 ### Building the portable versions
-Windows/Linux portable versions can be built using the `mvn install -PcreateDistributables` command. This command generates the following four portable versions of La-iMAgeS at `la-images-aibench/target`: Linux 32-bit, Linux 64-bit, Windows 32-bit and Windows 64-bit.
+Windows/Linux portable versions can be built using the `mvn install -PcreateDistributables` command. This command generates the following four portable versions of La-iMAgeS at `la-images-aibench/target/builds`: Linux 32-bit, Linux 64-bit, Windows 32-bit and Windows 64-bit.
 
 ### Building the Windows installers
-NSIS-based Windows installers can be built using the `mvn install -PcreateInstallers` command. This command generates the 32 and 64-bit versions at `la-images-aibench/target/dist32` and `la-images-aibench/target/dist`, respectively. Note that this profile is created to run under Linux environments with `mingw-w64` and `wine` installed (it relies on `i686-w64-mingw32-windres` and `i686-w64-mingw32-gcc` to create some application files packed by NSIS).
+NSIS-based Windows installers can be built using the `mvn install -PcreateInstallers` command. This command generates the 32 and 64-bit versions at `la-images-aibench/target/builds`. Note that this profile is created to run under Linux environments with `mingw-w64` and `wine` installed (it relies on `i686-w64-mingw32-windres` and `i686-w64-mingw32-gcc` to create some application files packed by NSIS).
 
 Team
 ----
