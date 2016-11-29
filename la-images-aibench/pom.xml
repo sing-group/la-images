@@ -330,7 +330,24 @@
 							</resources>
 						</configuration>
 					</execution>
-					
+					<!-- copy dist-scripts -->
+					<execution>
+						<id>copy-resources-dist-scripts</id>
+						<!-- here the phase you need -->
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/dist-scripts/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources/dist-scripts</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
 					<!-- copy help resources -->
 					<execution>
 						<id>copy-resources-help</id>
@@ -470,6 +487,8 @@
 					<exclude>conf</exclude>
 					<exclude>scripts/**/*</exclude>
 					<exclude>scripts</exclude>
+					<exclude>dist-scripts/**/*</exclude>
+					<exclude>dist-scripts</exclude>
 					<exclude>laimages.properties</exclude>
 					<exclude>installer*/**/*</exclude>
 					<exclude>installer*</exclude>

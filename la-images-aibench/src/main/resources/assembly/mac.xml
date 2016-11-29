@@ -8,8 +8,7 @@
 	</formats>
 	<files>
 		<file>
-			<source>${project.build.directory}/run-dist.command</source>
-			<destName>run.command</destName>
+			<source>${project.build.directory}/dist-scripts/run.command</source>
 			<fileMode>777</fileMode>
 			<outputDirectory>/</outputDirectory>
 		</file>
