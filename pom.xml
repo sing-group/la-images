@@ -131,6 +131,7 @@
 		<jir.windows.32b>${project.build.directory}/java-installer-resources/windows/32b/jre1.8.0_74</jir.windows.32b>
 		<jir.linux.64b>${project.build.directory}/java-installer-resources/linux/64b/jre1.8.0_74</jir.linux.64b>
 		<jir.linux.32b>${project.build.directory}/java-installer-resources/linux/32b/jre1.8.0_74</jir.linux.32b>
+		<jir.mac>${project.build.directory}/java-installer-resources/mac/jre1.8.0_74</jir.mac>
 		
 		<should.skip.installer>true</should.skip.installer>
 		<should.skip.distributable>true</should.skip.distributable>

@@ -255,6 +255,7 @@
 								<descriptor>assembly/linux-32b.xml</descriptor>
 								<descriptor>assembly/windows.xml</descriptor>
 								<descriptor>assembly/windows-32b.xml</descriptor>
+								<descriptor>assembly/mac.xml</descriptor>
 							</descriptors>
 						</configuration>
 						<executions>
@@ -369,6 +370,20 @@
 							<unpack>true</unpack>
 							<outputDirectory>${project.build.directory}/java-installer-resources</outputDirectory>
 							<md5>7ca41346fc426f24073db938e5959b66</md5>
+						</configuration>
+					</execution>
+					<execution>
+						<id>download-java-installer-resources-mac</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>wget</goal>
+						</goals>
+						<configuration>
+							<skip>${should.skip.download}</skip>
+							<url>http://sing.ei.uvigo.es/maven2/resources/java-installer-resources-mac-1.8.0_74.zip</url>
+							<unpack>true</unpack>
+							<outputDirectory>${project.build.directory}/java-installer-resources</outputDirectory>
+							<md5>553d0cc525347ce48fd7eb8f4d6378fc</md5>
 						</configuration>
 					</execution>
 				</executions>
