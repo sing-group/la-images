@@ -1,6 +1,6 @@
 ![Logo](la-images.png) LA-iMageS [![license](https://img.shields.io/badge/LICENSE-GPLv3-blue.svg)]()
 =================================
-Laser ablation and inductively coupled plasma mass spectrometry focusing on bioimaging from elemental distribution. Please, visit the [official web page ](http://www.la-images.net) of the project for downloads and support.
+Laser ablation and inductively coupled plasma mass spectrometry focusing on bioimaging from elemental distribution. Please, visit the [official web page](http://www.la-images.net) of the project for downloads and support.
 
 Modules
 -------
@@ -29,7 +29,7 @@ This project is an idea and is developed by:
 * José Luis Capelo Martínez [Bioscope Group](http://www.bioscopegroup.org/)
 * Florentino Fdez-Riverola [SING Group](http://sing.ei.uvigo.es)
 * Miguel Reboiro-Jato [SING Group](http://sing.ei.uvigo.es)
-* Hugo López-Fdez [SING Group](http://sing.ei.uvigo.es)
+* Hugo López-Fernández [SING Group](http://sing.ei.uvigo.es)
 * Daniel Glez-Peña [SING Group](http://sing.ei.uvigo.es)
 
 Citing
