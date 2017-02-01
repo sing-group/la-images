@@ -84,6 +84,57 @@ public class NormalizeElementDataTest {
 		
 		assertElementDataEquals(expectedNormalized, normalized);
 	}
+
+	@Test
+	public void normalizeElementDataWithStandardContainingZeroesTest() {
+		ElementData toNormalize = ElementData.createElementData(
+			"To normalize",
+			new LineData[]{
+				new LineData(
+					"Line 1",
+					new double[]{ 1d ,2d, 3d },
+					new HorizontalLineCoordinates(0.1d, 0d, 0.2d, 0.0d)
+				),
+				new LineData(
+					"Line 2",
+					new double[]{ 4d, 5d, 0d },
+					new HorizontalLineCoordinates(0.1d, 0d, 0.2d, 0.1d)
+				)
+			});
+		ElementData standard = ElementData.createElementData(
+			"Standard",
+			new LineData[]{
+				new LineData(
+					"Line 1",
+					new double[]{ 2d, 4d, 6d },
+					new HorizontalLineCoordinates(0.1d, 0d, 0.2d, 0.0d)
+				),
+				new LineData(
+					"Line 2",
+					new double[]{ 1d, 0d, 0d },
+					new HorizontalLineCoordinates(0.1d, 0d, 0.2d, 0.1d)
+				)
+			});
+
+		ElementData normalized = NormalizeElementData.normalize(standard, toNormalize);
+
+		ElementData expectedNormalized = ElementData.createElementData(
+			"Normalized",
+			new LineData[]{
+				new LineData(
+					"Line 1",
+					new double[] { 0.5d, 0.5d, 0.5d },
+					new HorizontalLineCoordinates(0.1d, 0d, 0.2d, 0.0d)
+				),
+				new LineData(
+					"Line 2",
+					new double[] { 4d, Double.NaN, Double.NaN },
+					new HorizontalLineCoordinates(0.1d, 0d, 0.2d, 0.1d)
+				)
+			});
+
+		assertElementDataEquals(expectedNormalized, normalized);
+	}
 	
 	@Test
 	public void normalizeElementDataTest() {

@@ -75,6 +75,8 @@ public class NormalizeElementData {
 	
 	/**
 	 * Normalizes the {@code toNormalize} element by the {@code standard} element.
+	 * Note that if {@code standard} element contains zeroes, {@code NaN} values
+	 * will appear at these positions in the normalized {@code ElementData}.
 	 * 
 	 * @param standard the standard {@code ElementData}.
 	 * @param toNormalize the {@code ElementData} to normalize.
@@ -107,9 +109,13 @@ public class NormalizeElementData {
 
 	private static final double[] normalize(double[] data, double[] standard) {
 		final double[] normalized = new double[data.length];
-		
+
 		for (int i = 0; i < data.length; i++) {
 			normalized[i] = data[i] / standard[i];
+
+			if (Double.isInfinite(normalized[i])) {
+				normalized[i] = Double.NaN;
+			}
 		}
 		
 		return normalized;
