@@ -52,6 +52,13 @@ import es.uvigo.ei.sing.laimages.core.util.ProgressHandler;
  *
  */
 public class LineDatasetLoader {
+	private static final String STANDARD_ELEMENT_ZEROES_WARNING =
+		"Standard element contains one or more values equal to 0. "
+		+ "This means that other elements can't be adjusted using the "
+		+ "standard in these positions and, consequently, these positions are "
+		+ "considered as missing values. This missing values are represented "
+		+ "as 0's in the 2D/3D visualization and represented as empty cells "
+		+ "(missing values) when data is exported as CSV.";
 
 	private static final String[] extensions = new String[]{"xl"};
 	private final FilenameFilter fileFilter;
@@ -60,7 +67,7 @@ public class LineDatasetLoader {
 	/**
 	 * Constructs a new instance of {@code LineDatasetLoader}.
 	 * 
-	 * @param configuration the dataste configuration.
+	 * @param configuration the dataset configuration.
 	 */
 	public LineDatasetLoader(ElementDatasetConfiguration configuration) {
 		this.fileFilter = new ExtensionFilenameFilter(extensions);
@@ -141,7 +148,8 @@ public class LineDatasetLoader {
 		
 		DefaultElementDataset dataset = createDataset(
 			path, 
-			loadElementData(path, progressHandler)
+			loadElementData(path, progressHandler),
+			progressHandler
 		);
 		
 		normalizeCoordinates(dataset);
@@ -163,7 +171,8 @@ public class LineDatasetLoader {
 	}
 	
 	private DefaultElementDataset createDataset(Path path, 
-		List<ElementData> elements) throws NoSuchStandardElementException 
+		List<ElementData> elements, ProgressHandler progressHandler) 
+		throws NoSuchStandardElementException 
 	{
 		DefaultElementDataset dataset = new DefaultElementDataset(path, path
 				.getFileName().toString(), this.configuration);
@@ -172,24 +181,25 @@ public class LineDatasetLoader {
 		} else {
 			dataset.addElements(
 				normalizeElementData(
-					elements, this.configuration.getStandardElement())
+					elements, this.configuration.getStandardElement(), progressHandler)
 			);
 		}
 		return dataset;
 	}
 
 	private static final List<ElementData> normalizeElementData(
-		List<ElementData> elements, String standardElement) 
+		List<ElementData> elements, String standardElement, ProgressHandler progressHandler) 
 		throws NoSuchStandardElementException 
 	{
 		ElementData standardElementData = 
 			getStandardElementData(elements, standardElement);
+		checkStandardElementData(standardElementData, progressHandler);
 		return NormalizeElementData.normalize(standardElementData,elements)
 				.stream()
 					.filter(e -> !e.getName().equals(standardElement))
 						.collect(Collectors.toList());
 	}
-	
+
 	private static final ElementData getStandardElementData(
 		List<ElementData> elements, String standardElement)
 		throws NoSuchStandardElementException 
@@ -203,7 +213,24 @@ public class LineDatasetLoader {
 					+ standardElement + " is not present in the dataset");
 		}
 	}
-	
+
+	private static void checkStandardElementData(
+		ElementData standardElementData, ProgressHandler progressHandler
+	) {
+		boolean warn = false;
+		for (LineData l : standardElementData.getLines()) {
+			for (double value : l.getData()) {
+				if (value == 0d) {
+					warn = true;
+					break;
+				}
+			}
+		}
+		if (warn) {
+			progressHandler.warn(STANDARD_ELEMENT_ZEROES_WARNING);
+		}
+	}
+
 	private void normalizeCoordinates(DefaultElementDataset dataset) {
 		if (dataset.getElementCount() > 0) {
 			LineCoordinatesUtils.normalizeCoordinates(

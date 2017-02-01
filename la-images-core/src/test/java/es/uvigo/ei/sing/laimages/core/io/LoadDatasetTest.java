@@ -31,6 +31,7 @@ import static es.uvigo.ei.sing.laimages.core.io.TestDatasetUtils.TEST_DATASET_IN
 import static es.uvigo.ei.sing.laimages.core.io.TestDatasetUtils.TEST_DATASET_LINE_POSITIONS_REPEATED_DIRECTORY;
 import static es.uvigo.ei.sing.laimages.core.io.TestDatasetUtils.TEST_DATASET_MISSING_POSITIONS_DIFFERENT_LINE_LENGTHS_DIRECTORY;
 import static es.uvigo.ei.sing.laimages.core.io.TestDatasetUtils.TEST_DATASET_MISSING_POSITIONS_DIRECTORY;
+import static es.uvigo.ei.sing.laimages.core.io.TestDatasetUtils.TEST_DATASET_STANDARD_WITH_ZEROES;
 import static es.uvigo.ei.sing.laimages.core.io.TestDatasetUtils.loadTestDataset;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -87,7 +88,7 @@ public class LoadDatasetTest {
 		LineDatasetLoader datasetLoader = new LineDatasetLoader(datasetConfiguration);
 		datasetLoader.loadAndNormalizeDataset(TEST_DATASET_INVALID_LINE_LENGTHS_DIRECTORY.toPath());
 	}
-	
+
 	@Test
 	public void testLoadDatasetWithRepeatedLinePositions() throws IOException, NoSuchStandardElementException {
 		ElementDatasetConfiguration datasetConfiguration = new ElementDatasetConfiguration(0.060d,	0.527d, 0.080d, "C12");
@@ -103,7 +104,21 @@ public class LoadDatasetTest {
 			progressHandler.getWarnings()
 		);
 	}
-	
+
+	@Test
+	public void testLoadDatasetWithStandardContainingZeroes() throws IOException, NoSuchStandardElementException {
+		ElementDatasetConfiguration datasetConfiguration = new ElementDatasetConfiguration(0.060d,	0.527d, 0.080d, "C12");
+		LineDatasetLoader datasetLoader = new LineDatasetLoader(datasetConfiguration);
+
+		ProgressHandler progressHandler = new DefaultProgressHandler();
+		datasetLoader.loadAndNormalizeDataset(TEST_DATASET_STANDARD_WITH_ZEROES.toPath(), progressHandler);
+		assertTrue(progressHandler.hasWarnings());
+		assertEquals(1,	progressHandler.getWarnings().size());
+		assertTrue(progressHandler.getWarnings().get(0).startsWith(
+			"Standard element contains one or more values equal to 0.")
+		);
+	}
+
 	private void assertCorrectDataset(ElementDataset dataset) {
 		ElementData Na23 = dataset.getElement(NA23_NAME).get();
 		

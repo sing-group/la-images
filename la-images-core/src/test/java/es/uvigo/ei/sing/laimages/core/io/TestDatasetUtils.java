@@ -56,6 +56,9 @@ public class TestDatasetUtils {
 	public static final File TEST_DATASET_LINE_POSITIONS_REPEATED_DIRECTORY = loadResource(
 		"/dataset-repeated-positions");
 
+	public static final File TEST_DATASET_STANDARD_WITH_ZEROES = loadResource(
+		"/dataset-standard-zeroes");
+
 	public static final File TEST_DATASET_COORDINATES_FILE = loadResource("/dataset/positions.txt");
 
 	private static final ElementDatasetConfiguration TEST_DATASET_CONFIGURATION = new ElementDatasetConfiguration(
