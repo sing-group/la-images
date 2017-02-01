@@ -101,16 +101,16 @@ public interface ElementData {
 	public boolean isCompatibleWith(ElementData data);
 	
 	/**
-	 * Returns the maximum value in the data matrix.
+	 * Returns the maximum value in the data matrix, excluding missing values.
 	 * 
-	 * @return the maximum value in the data matrix.
+	 * @return the maximum value in the data matrix, excluding missing values.
 	 */
 	public double getMaxValue();
 	
 	/**
-	 * Returns the minimum value in the data matrix.
+	 * Returns the minimum value in the data matrix, excluding missing values.
 	 * 
-	 * @return the minimum value in the data matrix.
+	 * @return the minimum value in the data matrix, excluding missing values.
 	 */
 	public double getMinValue();
 	

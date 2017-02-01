@@ -52,6 +52,7 @@ public abstract class AbstractElementData implements ElementData, Serializable {
 	protected String name;
 	
 	private double maxValue = Double.MIN_VALUE;
+	private double minValue = Double.MAX_VALUE;
 
 	/**
 	 * Constructs an {@code AbstractElementData}.
@@ -122,17 +123,30 @@ public abstract class AbstractElementData implements ElementData, Serializable {
 			this.maxValue = Arrays.stream(this.getLines())
 				.map(LineData::getData)
 				.flatMapToDouble(DoubleStream::of)
-			.max()
+				.filter(d -> !isMissingValue(d))
+				.max()
 			.orElseThrow(() -> new IllegalStateException("No values found"));
 		}
 		
 		return this.maxValue;
 	}
-	
+
+	protected boolean isMissingValue(double d) {
+		return Double.isNaN(d);
+	}
+
 	@Override
 	public double getMinValue() {
-		return Stream.of(getData(0.0d))	
-				.flatMapToDouble(DoubleStream::of).min().getAsDouble();
+		if(this.minValue == Double.MAX_VALUE) {
+			this.minValue = Arrays.stream(this.getLines())
+				.map(LineData::getData)
+				.flatMapToDouble(DoubleStream::of)
+				.filter(d -> !isMissingValue(d))
+				.min()
+			.orElseThrow(() -> new IllegalStateException("No values found"));
+		}
+
+		return this.minValue;
 	}
 	
 	@Override
