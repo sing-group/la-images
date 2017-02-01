@@ -80,7 +80,12 @@ public class HorizontalElementData extends AbstractElementData {
 			
 			for (int column = 0; column < xAxis.size(); column++) {
 				if (column >= startXIndex && column < endXIndex) {
-					data[yIndex][column] = line.getData()[column - startXIndex];
+					double currentValue = line.getData()[column - startXIndex];
+					if (isMissingValue(currentValue)) {
+						data[yIndex][column] = missingValue;
+					} else {
+						data[yIndex][column] = currentValue;
+					}
 				} else {
 					data[yIndex][column] = missingValue;
 				}
@@ -114,9 +119,10 @@ public class HorizontalElementData extends AbstractElementData {
 			
 			for (int column = 0; column < xAxis.size(); column++) {
 				if (column >= startXIndex && column < endXIndex) {
-					sb.append(formatter.format(
-						line.getData()[column - startXIndex]
-					));
+					double currentValue = line.getData()[column - startXIndex];
+					if (!isMissingValue(currentValue)) {
+						sb.append(formatter.format(currentValue));
+					}
 				}
 				if (column < xAxis.size() - 1) {
 					sb.append(format.getColumnSeparator());

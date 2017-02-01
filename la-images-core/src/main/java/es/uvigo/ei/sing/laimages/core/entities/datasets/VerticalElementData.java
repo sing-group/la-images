@@ -80,7 +80,12 @@ public class VerticalElementData extends AbstractElementData {
 
 			for (int row = 0; row < yAxis.size(); row++) {
 				if (row >= startYIndex && row < endYIndex) {
-					data[row][xIndex] = line.getData()[row - startYIndex];
+					double currentValue = line.getData()[row - startYIndex];
+					if (isMissingValue(currentValue)) {
+						data[row][xIndex] = missingValue;
+					} else {
+						data[row][xIndex] = currentValue;
+					}
 				} else {
 					data[row][xIndex] = missingValue;
 				}
@@ -120,9 +125,10 @@ public class VerticalElementData extends AbstractElementData {
 				final int lineRangeStartIndex = indexOf(yAxis, lineRangeStart, DELTA);
 				
 				if (y >= lineRangeStart && y <= lineRangeEnd) {
-					sb.append(formatter.format(
-						line.getData()[yIndex - lineRangeStartIndex]
-					));
+					double currentValue = line.getData()[yIndex - lineRangeStartIndex];
+					if (!isMissingValue(currentValue)) {
+						sb.append(formatter.format(currentValue));
+					}
 				}
 				
 				if (xIndex < xAxis.size() - 1) {
