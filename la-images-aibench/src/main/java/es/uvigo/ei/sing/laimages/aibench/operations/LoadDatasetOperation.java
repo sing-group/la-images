@@ -26,13 +26,15 @@ package es.uvigo.ei.sing.laimages.aibench.operations;
 import static es.uvigo.ei.aibench.core.operation.annotation.Direction.INPUT;
 import static es.uvigo.ei.aibench.core.operation.annotation.Direction.OUTPUT;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 import es.uvigo.ei.aibench.core.operation.annotation.Operation;
 import es.uvigo.ei.aibench.core.operation.annotation.Port;
@@ -210,8 +212,15 @@ public class LoadDatasetOperation {
 	}
 
 	private JComponent getWarningComponent(List<String> warnings) {
-		JLabel warning = new JLabel(getWarningMessage(warnings));
-		return warning;
+		JTextPane warning = new JTextPane();
+		warning.setContentType("text/html");
+		warning.setText(getWarningMessage(warnings));
+		warning.setEditable(false);
+		Dimension size = new Dimension(400, 300);
+		warning.setPreferredSize(size);
+		warning.setSize(size);
+		warning.setMaximumSize(size);
+		return new JScrollPane(warning);
 	}
 
 	private String getWarningMessage(List<String> warnings) {
